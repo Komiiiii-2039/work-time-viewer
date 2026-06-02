@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fafafa;
+  --surface: #ffffff;
+  --foreground: #000000;
+  --border: #eaeaea;
+  --a1: #fafafa;
+  --a2: #eaeaea;
+  --a3: #999999;
+  --a4: #888888;
+  --a5: #666666;
+  --a6: #444444;
+  --a7: #333333;
+  --a8: #111111;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* ── MD3 State Layer (tailmater pattern) ── */
+@layer components {
+
+  /* Filled button — black bg, white text */
+  .btn-filled {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    background-color: #000;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.625rem 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+  .btn-filled::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: #fff;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .btn-filled:hover::after  { opacity: 0.10; }
+  .btn-filled:focus-visible::after { opacity: 0.14; }
+  .btn-filled:active::after { opacity: 0.18; }
+  .btn-filled:disabled { opacity: 0.38; cursor: not-allowed; }
+
+  /* Outlined button */
+  .btn-outlined {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid #eaeaea;
+    background-color: transparent;
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.625rem 1.5rem;
+  }
+  .btn-outlined::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: #000;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .btn-outlined:hover::after  { opacity: 0.04; }
+  .btn-outlined:focus-visible::after { opacity: 0.08; }
+  .btn-outlined:active::after { opacity: 0.12; }
+  .btn-outlined:disabled { opacity: 0.38; cursor: not-allowed; }
+
+  /* Tonal button — light gray bg */
+  .btn-tonal {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    background-color: #f4f4f4;
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.625rem 1.5rem;
+  }
+  .btn-tonal::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: #000;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .btn-tonal:hover::after { opacity: 0.06; }
+  .btn-tonal:active::after { opacity: 0.12; }
+  .btn-tonal:disabled { opacity: 0.38; cursor: not-allowed; }
+
+  /* Text button */
+  .btn-text {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    background-color: transparent;
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+  }
+  .btn-text::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: #000;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .btn-text:hover::after { opacity: 0.04; }
+  .btn-text:active::after { opacity: 0.10; }
+
+  /* Elevated card */
+  .card-elevated {
+    background-color: #fff;
+    border-radius: 1rem;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 1px 3px 1px rgba(0,0,0,0.03);
+  }
+
+  /* Outlined card */
+  .card-outlined {
+    background-color: #fff;
+    border-radius: 1rem;
+    border: 1px solid #eaeaea;
+  }
+
+  /* Filled card */
+  .card-filled {
+    background-color: #f4f4f4;
+    border-radius: 1rem;
+  }
+
+  /* MD3 outlined text field */
+  .input-field {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid #eaeaea;
+    background-color: #fff;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: #000;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .input-field::placeholder { color: #999; }
+  .input-field:focus { border-color: #000; }
+
+  /* MD3 Chip */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 0.5rem;
+    border: 1px solid #eaeaea;
+    background-color: #fff;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #444;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+  }
+  .chip:hover { background-color: #fafafa; }
+  .chip-active {
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+  }
+  .chip-active:hover { background-color: #111; }
+
+}
