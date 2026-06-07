@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { addMonths, subMonths, subDays } from 'date-fns';
-import { Settings, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Settings, RefreshCw, ChevronLeft, ChevronRight, Github } from 'lucide-react';
 import { startOfMonthJST, endOfMonthJST, jstStrToUTC, fmtJST } from '@/lib/timezone';
 import type { Workplace } from '@/types';
 import { DUMMY_WORKPLACES, DUMMY_EVENTS } from '@/lib/dummyData';
@@ -142,6 +142,15 @@ export default function DashboardPage() {
               <RefreshCw size={13} className={loading ? 'animate-spin' : ''} />
               {loading ? '読込中' : '更新'}
             </button>
+            <a
+              href="https://github.com/Komiiiii-2039/work-time-viewer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#999] hover:text-black transition-colors"
+              title="Komiiiii-2039/work-time-viewer"
+            >
+              <Github size={18} />
+            </a>
           </div>
         </div>
       </header>
@@ -282,6 +291,7 @@ export default function DashboardPage() {
           <EventListTable events={filteredEvents} workplaces={workplaces} notes={notes} onSaveNote={handleSaveNote} />
         </div>
       </main>
+
     </div>
   );
 }

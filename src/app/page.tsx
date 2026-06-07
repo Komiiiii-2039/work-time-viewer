@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Plus, ArrowRight, CalendarDays } from 'lucide-react';
+import { Plus, ArrowRight, CalendarDays, Github } from 'lucide-react';
 import type { Workplace } from '@/types';
 import { DUMMY_WORKPLACES } from '@/lib/dummyData';
 import { loadWorkplaces, saveWorkplaces } from '@/lib/storage';
@@ -60,11 +60,22 @@ export default function SettingsPage() {
             <h1 className="text-sm font-semibold text-black">稼働時間集計</h1>
             <p className="text-xs text-[#999] mt-0.5">勤務先 (iCal) の設定</p>
           </div>
-          {workplaces.length > 0 && (
-            <Link href="/dashboard" className="btn-filled py-2 px-5 text-xs gap-1.5">
-              ダッシュボード <ArrowRight size={13} />
-            </Link>
-          )}
+          <div className="flex items-center gap-3">
+            {workplaces.length > 0 && (
+              <Link href="/dashboard" className="btn-filled py-2 px-5 text-xs gap-1.5">
+                ダッシュボード <ArrowRight size={13} />
+              </Link>
+            )}
+            <a
+              href="https://github.com/Komiiiii-2039/work-time-viewer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#999] hover:text-black transition-colors"
+              title="Komiiiii-2039/work-time-viewer"
+            >
+              <Github size={18} />
+            </a>
+          </div>
         </div>
       </header>
 
