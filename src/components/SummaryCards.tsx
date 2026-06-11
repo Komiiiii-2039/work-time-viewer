@@ -21,8 +21,8 @@ function Card({ label, value, sub, rightLabel, rightValue }: CardProps) {
         <p className="text-4xl font-semibold text-black tracking-tight leading-none">{value}</p>
         {rightValue && (
           <div className="flex flex-col leading-none">
-            {rightLabel && <p className="text-[10px] text-[#999] mb-0.5">{rightLabel}</p>}
-            <p className="text-xl font-semibold text-[#666] tracking-tight leading-none">{rightValue}</p>
+            {rightLabel && <p className="text-[10px] font-semibold text-[#999] uppercase tracking-widest mb-0.5">{rightLabel}</p>}
+            <p className="text-4xl font-semibold text-black tracking-tight leading-none">{rightValue}</p>
           </div>
         )}
       </div>
