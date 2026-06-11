@@ -17,11 +17,12 @@ function Card({ label, value, sub, rightLabel, rightValue }: CardProps) {
   return (
     <div className="card-elevated p-5">
       {rightValue ? (
-        <div className="flex gap-6">
+        <div className="flex items-stretch justify-between">
           <div>
             <p className="text-[10px] font-semibold text-[#999] uppercase tracking-widest">{label}</p>
             <p className="text-4xl font-semibold text-black mt-2 tracking-tight leading-none">{value}</p>
           </div>
+          <div className="w-px bg-[#eaeaea] mx-4" />
           <div>
             <p className="text-[10px] font-semibold text-[#999] uppercase tracking-widest">{rightLabel}</p>
             <p className="text-4xl font-semibold text-black mt-2 tracking-tight leading-none">{rightValue}</p>
