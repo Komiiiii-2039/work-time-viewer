@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { addMonths, subMonths, subDays } from 'date-fns';
 import { Settings, RefreshCw, ChevronLeft, ChevronRight, Github } from 'lucide-react';
-import { startOfMonthJST, endOfMonthJST, jstStrToUTC, fmtJST } from '@/lib/timezone';
+import { startOfMonthJST, endOfMonthJST, jstStrToUTC, fmtJST, jstDateStr } from '@/lib/timezone';
 import type { Workplace } from '@/types';
 import { DUMMY_WORKPLACES, DUMMY_EVENTS } from '@/lib/dummyData';
 import { loadWorkplaces } from '@/lib/storage';
@@ -84,6 +84,16 @@ export default function DashboardPage() {
   );
 
   const aggregation = useMemo(() => aggregate(filteredEvents), [filteredEvents]);
+  const todayHours = useMemo(() => {
+    const todayStr = jstDateStr(new Date());
+    const wpFiltered = selectedWpId === 'all'
+      ? allEvents
+      : allEvents.filter(e => e.workplaceId === selectedWpId);
+    const total = wpFiltered
+      .filter(e => !e.isAllDay && jstDateStr(e.start) === todayStr)
+      .reduce((s, e) => s + e.durationHours, 0);
+    return Math.round(total * 10) / 10;
+  }, [allEvents, selectedWpId]);
   const topTitles = useMemo(() => getTopTitles(filteredEvents, 8), [filteredEvents]);
   const weeklyData = useMemo(() => getWeeklyData(filteredEvents, startDate, endDate), [filteredEvents, startDate, endDate]);
   const dailyData = useMemo(() => getDailyData(filteredEvents, startDate, endDate), [filteredEvents, startDate, endDate]);
@@ -240,7 +250,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Summary cards */}
-        <SummaryCards data={aggregation} />
+        <SummaryCards data={aggregation} todayHours={todayHours} />
 
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
