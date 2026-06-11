@@ -16,16 +16,23 @@ interface CardProps {
 function Card({ label, value, sub, rightLabel, rightValue }: CardProps) {
   return (
     <div className="card-elevated p-5">
-      <p className="text-[10px] font-semibold text-[#999] uppercase tracking-widest">{label}</p>
-      <div className="flex items-baseline gap-3 mt-2">
-        <p className="text-4xl font-semibold text-black tracking-tight leading-none">{value}</p>
-        {rightValue && (
-          <div className="flex flex-col leading-none">
-            {rightLabel && <p className="text-[10px] font-semibold text-[#999] uppercase tracking-widest mb-0.5">{rightLabel}</p>}
-            <p className="text-4xl font-semibold text-black tracking-tight leading-none">{rightValue}</p>
+      {rightValue ? (
+        <div className="flex gap-6">
+          <div>
+            <p className="text-[10px] font-semibold text-[#999] uppercase tracking-widest">{label}</p>
+            <p className="text-4xl font-semibold text-black mt-2 tracking-tight leading-none">{value}</p>
           </div>
-        )}
-      </div>
+          <div>
+            <p className="text-[10px] font-semibold text-[#999] uppercase tracking-widest">{rightLabel}</p>
+            <p className="text-4xl font-semibold text-black mt-2 tracking-tight leading-none">{rightValue}</p>
+          </div>
+        </div>
+      ) : (
+        <>
+          <p className="text-[10px] font-semibold text-[#999] uppercase tracking-widest">{label}</p>
+          <p className="text-4xl font-semibold text-black mt-2 tracking-tight leading-none">{value}</p>
+        </>
+      )}
       {sub && <p className="text-xs text-[#666] mt-2">{sub}</p>}
     </div>
   );
